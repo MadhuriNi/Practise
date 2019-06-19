@@ -1,0 +1,4091 @@
+<!-- edited with XMLSpy v2007 sp2 (http://www.altova.com) by Carl Wilhelm (fedex) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.4.1">
+	<xs:annotation>
+		<xs:documentation>2 Nov 2006 CR # 203546-1 Added FDSReprintDestinationID, xs:string, LEN=9, optional as child element of FDSRemit after FDSReprintComatAddress element.</xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>8 Nov 2006 CR # 204299 Changed length of FDSControlInformation to 38 and FDSHouseholdID to 184.</xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>8 Nov 2006 CR # 204318-1 Changed length of FDSControlInformation from 38 to 39.</xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>29 Nov 2006 CR # 205184-3 Added 4 new address elements to the FDSBillToAddress complex type.</xs:documentation>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>4 Dec 2006 CR # 205611 Changed FDSSummaryDetailGroup to minOccurs="0"</xs:documentation>
+	</xs:annotation>
+	<xs:element name="FDSInvoice">
+		<xs:annotation>
+			<xs:documentation>The FedEx Invoice</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FDSControlInformation">
+					<xs:annotation>
+						<xs:documentation>Control Count Ignore Invoice
+Invoice Amount
+Billto Country
+Billto Currency
+Settlement Type
+Billing Medium
+MMA Flag
+Line of Business Group Code</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="40"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSVersionNumber" type="xs:string"/>
+				<xs:element name="FDSDocumentType">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="2"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSDocumentSubType" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="0"/>
+							<xs:maxLength value="7"/>
+							<xs:whiteSpace value="preserve"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSOrigSrcSystemID" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSSrcSystemID" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSInvoiceCountry"/>
+				<xs:element name="FDSLOB">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="5"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSArchiveFlag">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+							<xs:enumeration value="Y"/>
+							<xs:enumeration value="N"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSArchiveDetailFlag">
+					<xs:annotation>
+						<xs:documentation>indicates if detail pages should be archived</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+							<xs:enumeration value="Y"/>
+							<xs:enumeration value="N"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSPrintPaymentActivityFlag"/>
+				<xs:element name="FDSPrintSummaryFlag">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+							<xs:enumeration value="Y"/>
+							<xs:enumeration value="N"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSPrintDetailFlag">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+							<xs:enumeration value="Y"/>
+							<xs:enumeration value="N"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSExpressPrintFlag">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+							<xs:enumeration value="Y"/>
+							<xs:enumeration value="N"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSGroundPrintFlag">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+							<xs:enumeration value="Y"/>
+							<xs:enumeration value="N"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSNonTransPrintFlag">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+							<xs:enumeration value="Y"/>
+							<xs:enumeration value="N"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSSmartPostPrintFlag">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+							<xs:enumeration value="Y"/>
+							<xs:enumeration value="N"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSBFCoverPageFlag" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSEDeliveryFlag" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSTurnOffBFFlag" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSLateFeeEligibilityFlag" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSMediaType">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSInvoiceIDNbr" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="16"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSInvoiceSequence" type="xs:string" minOccurs="0"/>
+				<xs:element name="FDSTransactionQty" type="xs:integer" minOccurs="0"/>
+				<xs:element name="FDSSpecialHandlingCode" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:length value="2"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSHouseholdID">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="184"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSRemitBackPageType">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="1"/>
+							<xs:enumeration value="Y"/>
+							<xs:enumeration value="D"/>
+							<xs:enumeration value="N"/>
+							<xs:enumeration value="S"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSAdditionalCopyDescription" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="50"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSInsertID" minOccurs="0" maxOccurs="6">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FDSRemit">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FDSInvoiceNumber">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:length value="9"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSInvoiceNumberLabel">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="25"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSPageNumberDescription1">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSPageNumberDescription2">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="10"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSCustomerNumber">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="9"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSCustomerNumberFormatted">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="11"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSCustomerNumberFormattedMasked" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="11"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSCustomerNumberLabel">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="35"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSInvoiceDate">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="25"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSInvoiceDateFormatted">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="25"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSInvoiceDateLabel">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="20"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSVendorID">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:length value="3"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSInvoiceType">
+								<xs:annotation>
+									<xs:documentation>*</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSInvoiceDescription" minOccurs="0" maxOccurs="2">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="60"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSReprintType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>*</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:length value="2"/>
+										<xs:enumeration value="IN"/>
+										<xs:enumeration value="EX"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSReprintDepartmentName" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="20"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSReprintEmployeeID" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="9"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSReprintEmployeeName" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="30"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSReprintComatAddress" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="25"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSReprintDestinationID" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:length value="9"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSFileDownloadNumber" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="16"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSReprintEmployeeAddress" minOccurs="0">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="FDSAddressType">
+											<xs:sequence>
+												<xs:element name="FDSCity">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="21"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSState">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSZip">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="10"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSTitle" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="35"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSLanguageCode">
+								<xs:annotation>
+									<xs:documentation>*</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:length value="2"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSCurrencyCode">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:length value="3"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSDueDateDescription">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="100"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSDueDateFormatted" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="25"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSBillToAddress">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="FDSAddressType">
+											<xs:sequence>
+												<xs:element name="FDSCity">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="21"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSState">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSZip">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="10"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSCountry">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSPostalBarCode">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="11"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSPrimaryShipperAddress" type="FDSAddressType" minOccurs="0"/>
+							<xs:element name="FDSConsigneeAddress" minOccurs="0">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="FDSAddressType"/>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSEdiMasterBillToAddress" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Used for US EDI Parallel - Not printed</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="FDSAddressType">
+											<xs:sequence>
+												<xs:element name="FDSCity">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="21"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSState">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSZip">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="10"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSCountry">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:length value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSEdiMasterAccountNumber" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:length value="9"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSEdiMasterName" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="30"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSRemitStubLabel" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="30"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSOcrScanLine" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="28"/>
+										<xs:maxLength value="51"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSInvoiceAmountLabel">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="20"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSInvoiceAmount">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="35"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSAccountBalanceLabel" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="20"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSAccountBalance" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="35"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSFedExContactInfo" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSDescriptionLine" maxOccurs="unbounded">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSPhoneLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="25"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSPhoneNumber">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="65"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSContactLabel" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="25"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSContact" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="65"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSPhoneHours" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="65"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSFaxLabel" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="25"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSFaxNumber" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSWebLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="25"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSWebAddress">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSRemittanceAddress" minOccurs="0">
+								<xs:complexType>
+									<xs:complexContent>
+										<xs:extension base="FDSAddressType">
+											<xs:sequence>
+												<xs:element name="FDSPostalBarCode">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="11"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSPlanetCodeID" minOccurs="0"/>
+											</xs:sequence>
+										</xs:extension>
+									</xs:complexContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSShipDate" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSDeliveryDate" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSCutomerReference" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSTrailerNo" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSBillOfLading" minOccurs="0">
+								<xs:simpleType>
+									<xs:restriction base="xs:string"/>
+								</xs:simpleType>
+							</xs:element>
+							<xs:choice>
+								<xs:element name="FDSRemittanceSummary">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="FDSSummaryHeading">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="40"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="FDSSummarySubHeading" minOccurs="0">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="40"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="FDSSummaryDetailGroup" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="FDSDescription">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:maxLength value="45"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="FDSSubDescription" minOccurs="0">
+															<xs:simpleType>
+																<xs:restriction base="xs:string">
+																	<xs:maxLength value="45"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="FDSSummaryDetailSubGroup" minOccurs="0" maxOccurs="unbounded">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="FDSSummaryDetail" type="FDSChargeType" minOccurs="0" maxOccurs="unbounded"/>
+																	<xs:element name="FDSSummaryDetailSubTotal" type="FDSChargeType" minOccurs="0"/>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="FDSSummaryDetailTotal" type="FDSChargeType" minOccurs="0"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="FDSSummaryTotal" type="FDSTotalType" minOccurs="0"/>
+											<xs:element name="FDSMessage" type="FDSInvoiceMessageType" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="FDSInvoiceSummary">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="FDSSummaryHeading">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="40"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="FDSFront" type="FDSInvoiceSummaryType"/>
+											<xs:element name="FDSBackLeft" type="FDSInvoiceSummaryType" minOccurs="0"/>
+											<xs:element name="FDSBackRight" type="FDSInvoiceSummaryType" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+							<xs:element name="FDSRemitMessage" type="FDSInvoiceMessageType" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="FDSRemitStubMessage" type="FDSInvoiceMessageType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Activity Record messages for CA print on the top left side of the remit stub</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="FDSAccountSummary" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSSummaryHeading">
+											<xs:annotation>
+												<xs:documentation>"Account Summary"</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FDSSummaryItem" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FDSItemDescription"/>
+													<xs:element name="FDSItemAmount" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="FDSAccountBalance" type="FDSTotalType"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSBFAccountSummary" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>BF Account Summary</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSHeading"/>
+										<xs:element name="FDSDetails" type="FDSTotalType" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Express, Ground, Other, etc..</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FDSTotal" type="FDSTotalType"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSAccountMessage" type="FDSInvoiceMessageType" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="FDSInvoiceMessage" type="FDSInvoiceMessageType" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="FDSServiceMarketingMessage" type="FDSInvoiceMessageType" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FDSPaymentCreditActivity" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Invoice Page 3 for Type C Balance Forward Customer</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FDSHeading">
+								<xs:annotation>
+									<xs:documentation>"Unapplied Payment Balance Application Request"</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="FDSContactLine1"/>
+							<xs:element name="FDSContactLine2"/>
+							<xs:element name="FDSHeaderText">
+								<xs:annotation>
+									<xs:documentation>"Payment and Credit Activity"</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="FDSColumnHeadings" type="FDSSummaryColumnHeadingsType"/>
+							<xs:element name="FDSActivityDetails" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSColumn1Data"/>
+										<xs:element name="FDSColumn2Data"/>
+										<xs:element name="FDSColumn3Data"/>
+										<xs:element name="FDSColumn4Data"/>
+										<xs:element name="FDSColumn5Data"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSActivityTotal" type="FDSTotalType">
+								<xs:annotation>
+									<xs:documentation>"Total Payments and Credits"</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FDSSummary" minOccurs="0" maxOccurs="2">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FDSCompany" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>Express, Ground, Other, etc..</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSHeading">
+											<xs:annotation>
+												<xs:documentation>FedEx Express Shipment Summary by Recipient</xs:documentation>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="80"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSSummarySection" minOccurs="0" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:documentation>Original, Rebill, Supp</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FDSAdditionalHeading" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Additional heading used in Canadian summary page only</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="80"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="FDSHeaderText" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>FedEx Express Shipments (Original)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="60"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="FDSRowType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Indicator to specify which type of row (width of columns in Exstream) If not set, use default</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="60"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="FDSColumnHeadings" type="FDSSummaryColumnHeadingsType"/>
+													<xs:element name="FDSSummarySubSection" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="FDSSubHeaderText" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Ground Prepaid</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="60"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSSummaryDetailLine" type="FDSSummaryColumnDataType" minOccurs="0" maxOccurs="unbounded"/>
+																<xs:element name="FDSSubtotal" type="FDSTotalType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Ground Prepaid Subtotal</xs:documentation>
+																	</xs:annotation>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FDSSummarySectionTotal" type="FDSSummaryColumnDataType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Total (For Originals, Rebills, Supplementals)</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="FDSSummarySectionMessage" minOccurs="0">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="80"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="FDSCompanyTotal" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Total FedEx Express</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FDSTotalColumns" type="FDSSummaryColumnHeadingsType" minOccurs="0"/>
+													<xs:element name="FDSTotalData" type="FDSSummaryColumnDataType"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSSummaryTotal" type="FDSTotalType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FDSDetail" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FDSExpress" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSDetailGroup" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FDSBreakToNewPage" minOccurs="0"/>
+													<xs:element name="FDSDetailGroupHeading" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>FedEx Express Shipment By Payor Type (Original)</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="65"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="FDSTransaction" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="FDSTrackingID">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="12"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSTransactionHeader">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSRow1">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSTransactionHeaderRowType"/>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSRow2">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSTransactionHeaderRowType"/>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSRow3" minOccurs="0">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSTransactionHeaderRowType"/>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSMessage" minOccurs="0" maxOccurs="unbounded">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="530"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSTransactionInfo" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSLabel">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="35"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSData">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="35"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSShipperAddress">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSAddressType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSRecipientAddress">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSAddressType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSAdditionalTransactionInfo" minOccurs="0" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Commodity Info</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSColumn1">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="100"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn2">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="100"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSChargeGroup" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSChargeDetail" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSChargeType">
+																							<xs:sequence>
+																								<xs:element name="FDSRatedAmount">
+																									<xs:simpleType>
+																										<xs:restriction base="xs:string">
+																											<xs:maxLength value="35"/>
+																										</xs:restriction>
+																									</xs:simpleType>
+																								</xs:element>
+																								<xs:element name="FDSRatedCurrency">
+																									<xs:simpleType>
+																										<xs:restriction base="xs:string">
+																											<xs:maxLength value="3"/>
+																										</xs:restriction>
+																									</xs:simpleType>
+																								</xs:element>
+																							</xs:sequence>
+																						</xs:extension>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSChargeGroupSubtotal" type="FDSChargeType" minOccurs="0"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSTransactionTotal" type="FDSChargeType" minOccurs="0"/>
+																<xs:element name="FDSSkipLines">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FDSMultiweight" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="FDSTransactionHeader">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSRow1" type="FDSTransactionHeaderRowType"/>
+																			<xs:element name="FDSRow2">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSTransactionHeaderRowType"/>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSRow3">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSTransactionHeaderRowType"/>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSRow4">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSTransactionHeaderRowType"/>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSRow5" minOccurs="0">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSTransactionHeaderRowType"/>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSMultiweightUnitsLabel" minOccurs="0"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSTransactionInfo" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSLabel">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="35"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSData">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="35"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSShipperAddress">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSAddressType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSRecipientAddress">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSAddressType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSColumnHeadings" type="FDSSummaryColumnHeadingsType"/>
+																<xs:element name="FDSMessage" minOccurs="0" maxOccurs="unbounded">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="530"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSPackage" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Package Headers will be printed 
+inside the Dialogue Application</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSTrackingID">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="20"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn1Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn2Data" minOccurs="0" maxOccurs="2">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn3Data" minOccurs="0" maxOccurs="2">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn4Data" minOccurs="0" maxOccurs="2">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn5Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn6Data" minOccurs="0" maxOccurs="4">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn7Data" minOccurs="0" maxOccurs="unbounded">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn8Data" minOccurs="0" maxOccurs="unbounded">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSMessage" minOccurs="0" maxOccurs="unbounded">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="530"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSChargeGroup" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSChargeDetail" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSChargeType">
+																							<xs:sequence>
+																								<xs:element name="FDSRatedAmount" minOccurs="0">
+																									<xs:simpleType>
+																										<xs:restriction base="xs:string">
+																											<xs:maxLength value="35"/>
+																										</xs:restriction>
+																									</xs:simpleType>
+																								</xs:element>
+																								<xs:element name="FDSRatedCurrency" minOccurs="0">
+																									<xs:simpleType>
+																										<xs:restriction base="xs:string">
+																											<xs:maxLength value="3"/>
+																										</xs:restriction>
+																									</xs:simpleType>
+																								</xs:element>
+																							</xs:sequence>
+																						</xs:extension>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSChargeGroupSubtotal" type="FDSChargeType" minOccurs="0"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSShipmentTotal">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSTotalType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FDSDetailGroupSubtotal" type="FDSTotalType" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>Shipper Subtotal</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="FDSTotal" type="FDSTotalType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Total FedEx Express</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FDSExpressCustomDocuments" type="FDSCustomDocumentsType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Canadian images/facsimiles print after each transaction</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSGround" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSDetailGroup" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FDSBreakToNewPage" minOccurs="0"/>
+													<xs:element name="FDSDetailGroupHeading" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>FedEx Ground Detail By Ship Date</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="65"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="FDSNonMultiweight" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="FDSTrackingID">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="22"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSTransactionHeader">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSRow1" type="FDSTransactionHeaderRowType"/>
+																			<xs:element name="FDSRow2" type="FDSTransactionHeaderRowType"/>
+																			<xs:element name="FDSRow3" type="FDSTransactionHeaderRowType" minOccurs="0"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSMessage" minOccurs="0" maxOccurs="unbounded">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="530"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSTransactionInfo" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSLabel">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="35"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSData">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="40"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSShipperAddress">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSAddressType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSRecipientAddress">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSAddressType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSAdditionalTransactionInfo" minOccurs="0" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Commodity Info</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSColumn1">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="100"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn2">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="100"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSChargeGroup" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSChargeDetail" minOccurs="0" maxOccurs="unbounded">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSChargeType">
+																							<xs:sequence>
+																								<xs:element name="FDSRatedAmount" minOccurs="0">
+																									<xs:simpleType>
+																										<xs:restriction base="xs:string">
+																											<xs:maxLength value="35"/>
+																										</xs:restriction>
+																									</xs:simpleType>
+																								</xs:element>
+																								<xs:element name="FDSRatedCurrency" minOccurs="0">
+																									<xs:simpleType>
+																										<xs:restriction base="xs:string">
+																											<xs:length value="3"/>
+																										</xs:restriction>
+																									</xs:simpleType>
+																								</xs:element>
+																							</xs:sequence>
+																						</xs:extension>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSChargeGroupSubtotal" type="FDSChargeType" minOccurs="0"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSTransactionTotal" type="FDSChargeType" minOccurs="0"/>
+																<xs:element name="FDSSkipLines" minOccurs="0">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="1"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FDSMultiweight" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="FDSTransactionHeader">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSRow1" type="FDSTransactionHeaderRowType"/>
+																			<xs:element name="FDSRow2">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSTransactionHeaderRowType"/>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSRow3" minOccurs="0">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="FDSTransactionHeaderRowType"/>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="FDSMultiweightUnitsLabel" minOccurs="0"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSMessage" minOccurs="0" maxOccurs="unbounded">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="530"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSPackage" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Package Headers will be printed 
+inside the Dialogue Application</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSColumn1Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn2Data" minOccurs="0" maxOccurs="2">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn3Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn4Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn5Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn6Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn7Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSMessage" minOccurs="0" maxOccurs="unbounded">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="530"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSChargeDetail" type="FDSChargeType" minOccurs="0" maxOccurs="unbounded"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSChargeDetail" type="FDSChargeType" maxOccurs="unbounded"/>
+																<xs:element name="FDSShipmentTotal">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSTotalType">
+																				<xs:sequence>
+																					<xs:element name="FDSWeight">
+																						<xs:simpleType>
+																							<xs:restriction base="xs:string">
+																								<xs:maxLength value="10"/>
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:extension>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FDSSmartPost" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="FDSTrackingID" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Billing Group ID</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="22"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSTransactionHeader" minOccurs="0">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSRow1" type="FDSTransactionHeaderRowType"/>
+																			<xs:element name="FDSRow2" type="FDSTransactionHeaderRowType"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSMessage" minOccurs="0" maxOccurs="unbounded">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="530"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSPackage" minOccurs="0" maxOccurs="unbounded">
+																	<xs:annotation>
+																		<xs:documentation>Package Headers will be printed 
+inside the Dialogue Application</xs:documentation>
+																	</xs:annotation>
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSColumn1Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn2Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn3Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn4Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn5Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSMessage" minOccurs="0" maxOccurs="unbounded">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="530"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSChargeDetail" type="FDSChargeType" minOccurs="0" maxOccurs="unbounded"/>
+																<xs:element name="FDSShipmentTotal" minOccurs="0">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSTotalType">
+																				<xs:sequence>
+																					<xs:element name="FDSWeight">
+																						<xs:simpleType>
+																							<xs:restriction base="xs:string">
+																								<xs:maxLength value="10"/>
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:extension>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FDSMiscellaneousCharges" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="FDSRowType" minOccurs="0">
+																	<xs:annotation>
+																		<xs:documentation>Indicator to specify which type of row (width of columns in Exstream) If not set, use default</xs:documentation>
+																	</xs:annotation>
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="60"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSHeader" type="FDSSummaryColumnHeadingsType" minOccurs="0"/>
+																<xs:element name="FDSDetail" minOccurs="0" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:complexContent>
+																			<xs:extension base="FDSSummaryColumnDataType"/>
+																		</xs:complexContent>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSDetailTotal" type="FDSSummaryColumnDataType" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FDSDetailGroupSubtotal" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>3/30/2006 Subtotal </xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:complexContent>
+																<xs:extension base="FDSTotalType">
+																	<xs:sequence>
+																		<xs:element name="FDSAdditionalDescription" minOccurs="0">
+																			<xs:simpleType>
+																				<xs:restriction base="xs:string">
+																					<xs:maxLength value="45"/>
+																				</xs:restriction>
+																			</xs:simpleType>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:extension>
+															</xs:complexContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="FDSTotal" type="FDSTotalType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Total FedEx Ground</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="FDSExpressCustomDocuments" type="FDSCustomDocumentsType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Canadian images/facsimiles print after each transaction</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSNonTransportation" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSDetailGroup" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FDSDetailGroupHeading" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>FedEx Other Charges Detail</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="60"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="FDSTransaction" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="FDSTransactionHeader">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSRow1" type="FDSTransactionHeaderRowType"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSMessage" minOccurs="0" maxOccurs="unbounded">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="530"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSTransactionInfo" maxOccurs="unbounded">
+																	<xs:simpleType>
+																		<xs:restriction base="xs:string">
+																			<xs:maxLength value="60"/>
+																		</xs:restriction>
+																	</xs:simpleType>
+																</xs:element>
+																<xs:element name="FDSChargeInfo" maxOccurs="unbounded">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSColumn1Data">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn2Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn3Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn4Data">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="FDSTransactionTotal">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="FDSColumn1Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn2Data">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn3Data" minOccurs="0">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																			<xs:element name="FDSColumn4Data">
+																				<xs:simpleType>
+																					<xs:restriction base="xs:string">
+																						<xs:maxLength value="60"/>
+																					</xs:restriction>
+																				</xs:simpleType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="FDSDetailGroupSubtotal" type="FDSTotalType">
+														<xs:annotation>
+															<xs:documentation>Merchandise Sales Subtotal</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="FDSTotal" type="FDSTotalType">
+											<xs:annotation>
+												<xs:documentation>Total Other Charges</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FDSAddressCorrection" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FDSHeadingDescription">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="65"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSHeader">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSColumn1Description">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSColumn2Description">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSTrackingIdLabel">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="25"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSDetailLeft" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSTrackingId">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSOriginalAddress">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="FDSAddressType"/>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="FDSCorrectedAddress">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="FDSAddressType"/>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSDetailRight" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSTrackingId">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSOriginalAddress">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="FDSAddressType"/>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="FDSCorrectedAddress">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="FDSAddressType"/>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FDSAlternateAddressPickup" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FDSHeadingDescription">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="65"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="FDSHeader">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSColumn1Description">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSColumn2Description">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSColumn3Description">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSColumn4Description">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSDetail" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSPickupDate" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="25"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSAlternateAddress">
+											<xs:complexType>
+												<xs:complexContent>
+													<xs:extension base="FDSAddressType"/>
+												</xs:complexContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="FDSTrackingId">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSChargeAmount">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="35"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FDSExpressCustomDocuments" type="FDSCustomDocumentsType" minOccurs="0"/>
+				<xs:element name="FDSFastBill" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FDSTableHeader">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSChargeLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSDescriptionLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="500"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSQuantityLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSUnitPriceLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSAmountLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSTableData" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSCharge">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSDescription" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="500"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSQuantity" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSUnitPrice">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSAmount">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSTableFooter">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSTotalLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSTotalAmount">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSTransactionTableHeader">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSOrigInvoiceLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="500"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSInvoiceLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSAirbillLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="500"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSShipDateLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="500"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSAmountLabel">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="50"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="FDSTransactionTableData" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FDSOrigInvoice" minOccurs="0">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="9"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSTrackingNbr">
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSShipDate">
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="FDSAmount">
+											<xs:simpleType>
+												<xs:restriction base="xs:string"/>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="FDSAddressType">
+		<xs:sequence>
+			<xs:element name="FDSLabel" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSName" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSCompanyName" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSLine1" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="70"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSLine2" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSCityStateZipCountry" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FDSInvoiceMessageType">
+		<xs:sequence>
+			<xs:element name="FDSSectionDescription" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="45"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSText" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="750"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FDSSummaryColumnHeadingsType">
+		<xs:sequence>
+			<xs:element name="FDSColumn1Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Date</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn2Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Activity Type</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn3Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Item Description</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn4Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Reason</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn5Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Credits</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn6Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn7Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn8Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn9Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FDSSummaryColumnDataType">
+		<xs:sequence>
+			<xs:element name="FDSColumn1Data">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn2Data">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn3Data">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn4Data">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn5Data">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn6Data">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn7Data">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn8Data">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSColumn9Data">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="60"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FDSTransactionHeaderRowType">
+		<xs:sequence>
+			<xs:element name="FDSColumn1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FDSLabel" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="FDSData" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FDSColumn2">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FDSLabel" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="FDSData" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FDSColumn3">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FDSLabel" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="FDSData" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FDSChargeType">
+		<xs:sequence>
+			<xs:element name="FDSDescription">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="65"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSAmount">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FDSTotalType">
+		<xs:sequence>
+			<xs:element name="FDSDescription">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="65"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FDSAmount">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="35"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FDSCustomDocumentsType">
+		<xs:sequence>
+			<xs:element name="FDSB3" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FDSB3Header">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FDSImporterName" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImporterAddress" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImporterCityStateZip" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="40"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSBusinessNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTypeCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOfficeNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTransportTypeCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSUladingPortCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTotalValueForDuty" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTotalDutyAmount" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTotalSpecialAssessmentAmount" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTotalExciseTaxAmount" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTotalGSTAmount" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTotalPayable" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSPurchaseOrderNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="FDSB3SubHeader" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FDSSubHeaderNumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSVendorName" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="27"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCurrencyCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTimeLimitMEAS" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="6"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSFreightCharges" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="5"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSReleaseDate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCustomerReferenceNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="40"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipmentNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSEntryTransactionNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="14"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOriginCountryCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSExportCountryCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTariffTreatmentCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSExportPortCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSExchangeRate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDirectShipmentMM" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDirectShipmentDD" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSB3Commodity" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="FDSLineNumber" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSDescription" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="30"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSWeightInKilos" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="7"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSPreviousTransaction" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="14"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSPreviousLineNumber" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSSpecialAuthorityNumber" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="21"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSClassNumber" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="13"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSTariffCode" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="4"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSClassLineQuantity" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="8"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSUOMCode" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSValueForDutyCode" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="3"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSSpecialAssessmentCode" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="2"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSDutyRateInput" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="8"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSExciseTaxRateInput" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="8"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSGSTRate" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="4"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSCurrencyConversionValue" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="11"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSValueForDuty" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="12"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSDutyAmount" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="11"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSSpecialAssessmentAmount" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="11"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSExciseTaxAmount" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="11"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSValueForTax" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="12"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="FDSGSTAmount" minOccurs="0">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="12"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FDSCF7501" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FDSCF7501Header">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FDSEntryNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipmentNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSReferenceNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeAddress1" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeAddress2" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeAddress3" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeAddress4" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeAddress5" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeState" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSEntryDate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSSummaryDate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImporterFileNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImporterNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImporterAddress1" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImporterAddress2" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImporterAddress3" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImporterAddress4" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSEntryType" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSPortCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="4"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSBondNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSBondType" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSModeTransport" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSExportCountry" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSExportDate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOriginCountry" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="5"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSMissingDocOneToFour" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSITManifestNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSITManifestDate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImportDate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSGoodsLocation" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSForeignPortLanding" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="5"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSUSPortLanding" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="5"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSManufacturerID" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="16"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCMDTotalDollars" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCMDTotalCents" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSPackageCount" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="7"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCommodityCount" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDutyDollars" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDutyCents" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTaxDollars" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTaxCents" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOtherDollars" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOtherCents" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="FDSCF7501Commodity" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FDSLineItemNumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDescription">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="30"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSRelationship">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="55"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSNAFTACountry">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTariffNumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSGrossWeight">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSUOMCode1">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSUOMQuantity1">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSUOMCode2">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSUOMQuantity2">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSEnteredValue">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSLineCharge">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSIRCAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSIRCAmountCents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSIRCRate">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSSpecificAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSSpecificAmountCents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSSpecificRate">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSAdValurmAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSAdValurmAmountCents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSAdValurmRate">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOtherAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOtherAmountCents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOtherRate">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSVisaNumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSADAAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSADAAmountCents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSADARate">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSADACaseNumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCVDAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCVDAmountCents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCVDRate">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCVDCaseNumber">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOTHRate1">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOTHAmount1">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOTHAmount1Cents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOTHRate2">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOTHAmount2">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOTHAmount2Cents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOTHRate3">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="13"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOTHAmount3">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOTHAmount3Cents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCMDTotalCharges">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCMDTotalChargesCents">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FDSJDOC" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FDSJDOCHeader">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FDSDeclarantEmployeeID" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipmentNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSOriginDestinationLocation" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSInputDate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCRDNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="22"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDeclarationNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSClearanceDate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipperCompany" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipperName" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipperAddress1" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipperAddress2" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipperCity" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipperPostalCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeCompany" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeName" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeAddress1" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeAddress2" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneeCity" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="35"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSConsigneePostalCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImporterNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCommercialInvoiceNumber" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="15"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSMonnaieCurrencyType" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSFreightChargeAmount" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="11"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTotalDeclaredValue" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="14"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSExchangeRate" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="20"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTotalWeight" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTotalArticles" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSPiecesQuantity" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="5"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDeliveryCond" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSShipmentOriginCountryCode" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSFreightPercent" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="FDSJDOCCommodity" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FDSArticleCount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSHSCodeDescription">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="40"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSHSCode">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="18"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSPreference">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="2"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDeclaredValue">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCommodityFreightValue">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSGoodsOriginCountry">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCommodityPieceQuantity">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="7"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCommodityWeight">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSPiecesJointes">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="10"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSAntiDumpPercent" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="6"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDutyPercent">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="6"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSAdditionalTaxPercent">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="6"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSVATPercent">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="6"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSAntiDumpAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDutyAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSAdditionalTaxAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSVATAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSTaxAmountsTotal">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSCustomsValue">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSImposableVATAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSEECValue">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="9"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSAdditionalTax2Percentage">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="6"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSAdditionalTax2Amount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDSPercentage">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="6"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="FDSDSAmount">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:maxLength value="12"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FDSImage" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FDSTrackingID">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="12"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="FDSImageIndexNumber">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="16"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FDSInvoiceSummaryType">
+		<xs:sequence>
+			<xs:element name="FDSSummaryItem" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FDSColumn1Data"/>
+						<xs:element name="FDSColumn2Data"/>
+						<xs:element name="FDSColumn3Data"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FDSSummaryTotal" type="FDSTotalType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
